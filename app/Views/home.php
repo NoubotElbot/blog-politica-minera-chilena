@@ -10,107 +10,38 @@
 </div>
 
 <div class="row mb-2">
-  <div class="col-md-6">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary">World</strong>
-        <h3 class="mb-0">Featured post</h3>
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="stretched-link">Continue reading</a>
-      </div>
-      <div class="col-auto d-none d-lg-block">
-        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-        </svg>
-
+  <?php foreach ($lastPostsByCategory as $post) : ?>
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success"><?= ucwords($post['categoria_nombre'] ) ?></strong>
+          <h3 class="mb-0"><?= $post['titulo'] ?></h3>
+          <div class="mb-1 text-muted"><?= date('d F Y', strtotime($post['create_at'])) ?></div>
+          <p class="mb-auto"><?= $post['subtitulo'] ?></p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="<?= $post['imagen'] ?>" class="images" width="200" height="250">      
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-success">Design</strong>
-        <h3 class="mb-0">Post title</h3>
-        <div class="mb-1 text-muted">Nov 11</div>
-        <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="stretched-link">Continue reading</a>
-      </div>
-      <div class="col-auto d-none d-lg-block">
-        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-        </svg>
-
-      </div>
-    </div>
-  </div>
 </div>
+<?php endforeach; ?>
 
 <div class="row">
   <div class="col-md-8">
     <h3 class="pb-4 mb-4 fst-italic border-bottom">
-      From the Firehose
+      Noticias mas recientes
     </h3>
-
-    <article class="blog-post">
-      <h2 class="blog-post-title">Sample blog post</h2>
-      <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
-      <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-      <hr>
-      <p>Yeah, she dances to her own beat. Oh, no. You could've been the greatest. 'Cause, baby, <a href="#">you're a firework</a>. Maybe a reason why all the doors are closed. Open up your heart and just let it begin. So très chic, yeah, she's a classic.</p>
-      <blockquote>
-        <p>Bikinis, zucchinis, Martinis, no weenies. I know there will be sacrifice but that's the price. <strong>This is how we do it</strong>. I'm not sticking around to watch you go down. You think you're so rock and roll, but you're really just a joke. I know one spark will shock the world, yeah yeah. Can't replace you with a million rings.</p>
-      </blockquote>
-      <p>Trying to connect the dots, don't know what to tell my boss. Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine. Glitter all over the room <em>pink flamingos</em> in the pool. </p>
-      <h2>Heading</h2>
-      <p>Suiting up for my crowning battle. If you only knew what the future holds. Bring the beat back. Peach-pink lips, yeah, everybody stares.</p>
-      <h3>Sub-heading</h3>
-      <p>You give a hundred reasons why, and you say you're really gonna try. Straight stuntin' yeah we do it like that. Calling out my name. ‘Cause I, I’m capable of anything.</p>
-      <pre><code>Example code block</code></pre>
-      <p>Before you met me I was alright but things were kinda heavy. You just gotta ignite the light and let it shine.</p>
-      <h3>Sub-heading</h3>
-      <p>You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out.</p>
-      <ul>
-        <li>Got a motel and built a fort out of sheets.</li>
-        <li>Your kiss is cosmic, every move is magic.</li>
-        <li>Suiting up for my crowning battle.</li>
-      </ul>
-      <p>Takes you miles high, so high, 'cause she’s got that one international smile.</p>
-      <ol>
-        <li>Scared to rock the boat and make a mess.</li>
-        <li>I could have rewrite your addiction.</li>
-        <li>I know you get me so I let my walls come down.</li>
-      </ol>
-      <p>After a hurricane comes a rainbow.</p>
-    </article><!-- /.blog-post -->
-
-    <article class="blog-post">
-      <h2 class="blog-post-title">Another blog post</h2>
-      <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-      <p>I am ready for the road less traveled. Already <a href="#">brushing off the dust</a>. Yeah, you're lucky if you're on her plane. I used to bite my tongue and hold my breath. Uh, She’s a beast. I call her Karma (come back). Black ray-bans, you know she's with the band. I can't sleep let's run away and don't ever look back, don't ever look back.</p>
-      <blockquote>
-        <p>Growing fast into a <strong>bolt of lightning</strong>. Be careful Try not to lead her on</p>
-      </blockquote>
-      <p>I'm intrigued, for a peek, heard it's fascinating. Oh oh! Wanna be a victim ready for abduction. She's got that international smile, oh yeah, she's got that one international smile. Do you ever feel, feel so paper thin. I’m gon’ put her in a coma. Sun-kissed skin so hot we'll melt your popsicle.</p>
-      <p>This is transcendental, on another level, boy, you're my lucky star.</p>
-    </article><!-- /.blog-post -->
-
-    <article class="blog-post">
-      <h2 class="blog-post-title">New feature</h2>
-      <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-      <p>From Tokyo to Mexico, to Rio. Yeah, you take me to utopia. I'm walking on air. We'd make out in your Mustang to Radiohead. I mean the ones, I mean like she's the one. Sun-kissed skin so hot we'll melt your popsicle. Slow cooking pancakes for my boy, still up, still fresh as a Daisy.</p>
-      <ul>
-        <li>I hope you got a healthy appetite.</li>
-        <li>You're never gonna be unsatisfied.</li>
-        <li>Got a motel and built a fort out of sheets.</li>
-      </ul>
-      <p>Don't need apologies. Boy, you're an alien your touch so foreign, it's <em>supernatural</em>, extraterrestrial. Talk about our future like we had a clue. I can feel a phoenix inside of me.</p>
-    </article><!-- /.blog-post -->
+    <?php foreach ($lastPosts as $post) : ?>
+      <article class="blog-post">
+        <h2 class="blog-post-title"><?= $post['titulo'] ?></h2>
+        <p class="blog-post-meta"><?= date('d F Y', strtotime($post['create_at'])) ?></p>
+        <p><?= $post['subtitulo'] ?></p>
+        <hr>
+        <?= $post['cuerpo'] ?>
+      </article><!-- /.blog-post -->
+    <?php endforeach; ?>
 
     <nav class="blog-pagination" aria-label="Pagination">
       <a class="btn btn-outline-primary" href="#">Older</a>
@@ -142,15 +73,31 @@
         <li><a href="#">April 2013</a></li>
       </ol>
     </div>
-
     <div class="p-4">
-      <h4 class="fst-italic">Elsewhere</h4>
+      <h4 class="fst-italic">Donde mas</h4>
       <ol class="list-unstyled">
-        <li><a href="#">GitHub</a></li>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Facebook</a></li>
+        <li>Facebook <a href="https://www.facebook.com/politica.minerachilena"><i class="fab fa-facebook text-primary"></i></a>
+        </li>
+        <li>LinkendIn <a href="https://www.linkedin.com/in/politica-minera-chilena-b85996201/"><i class="fab fa-linkedin" style="color:blue;"></i></a>
+        </li>
+        <li>Instagram <a href="https://www.instagram.com/politica_minera_chilena/"><i class="fab fa-instagram text-danger"></i></a>
+        </li>
       </ol>
     </div>
+    <div class="p-4">
+      <div class="infogram-embed" data-id="72884f85-1150-4e86-89ca-7882ea1b64d9" data-type="interactive" data-title="Precio Cobre"></div>
+    </div>
+    <script>
+      ! function(e, i, n, s) {
+        var t = "InfogramEmbeds",
+          d = e.getElementsByTagName("script")[0];
+        if (window[t] && window[t].initialized) window[t].process && window[t].process();
+        else if (!e.getElementById(n)) {
+          var o = e.createElement("script");
+          o.async = 1, o.id = n, o.src = "https://e.infogram.com/js/dist/embed-loader-min.js", d.parentNode.insertBefore(o, d)
+        }
+      }(document, 0, "infogram-async");
+    </script>
   </div>
 </div><!-- /.row -->
 <?= $this->endSection(); ?>

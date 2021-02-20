@@ -1,4 +1,52 @@
-/* stylelint-disable selector-list-comma-newline-after */
+/* stylelint-disable selector-list-comma-newline-after */ 
+body{
+  background-color: #e5e5e5;
+}
+.container{
+  background-color: #ffffff;
+}
+
+.search-bar{
+  margin-right: 1rem;
+}
+#searchform{
+  display:inline;
+  font-size:1em;
+  border-radius: 8em;
+  border:0.1em solid rgba(218,208,190,1);
+  box-shadow:0 0 0.3em rgba(60,60,60,0.4);
+  padding:0.3em;
+  background:white;
+}
+#search-input{
+  transition:all 0.2s ease-out;
+  width:1px;
+  border-radius:0;
+  box-shadow:none;
+  outline: none;
+  padding:0;
+  margin:0;
+  border:0;
+  background-color: transparent;
+  opacity:0;
+}
+#search-input:focus{
+  width:8em;
+  opacity:1;
+}
+#search-input-label{
+  padding-left: 1px;
+  display:inline-block;
+  margin-top:0.3em;
+  color:rgba(218,208,190,1);
+  text-shadow:0 0 0.1em rgba(60,60,60,0.3);
+  position: relative;
+  left:0.1em;
+}
+
+.images{
+  object-fit:cover;
+}
 
 .blog-header {
   line-height: 1;
