@@ -8,8 +8,6 @@
     <title>Politica Minera Chilena</title>
     <link rel="icon" type="image/jpg" href="<?= base_url('logo.jpg') ?>" />
     <link rel="stylesheet" href="<?= base_url('bootstrap-5.0.0-beta2-dist/css/bootstrap.min.css') ?>">
-
-
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -38,6 +36,20 @@
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
+                    <?php if (session()->get('isLoggedIn')) : ?>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user-circle"></i> <?= session()->get('username') ?>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="<?= base_url('dashboard') ?>">Ir al Dashboard</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="<?= base_url('logout') ?>">Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                     <!-- <a class="link-secondary" href="#">Subscribe</a> Proximamente-->
                 </div>
                 <div class="col-4 text-center">
@@ -49,7 +61,7 @@
                             <label for="search-input" id="search-input-label">
                                 <i class="fas fa-search"></i>
                             </label>
-                            <input type="text" value="" placeholder="search" name="search" id="search-input" />
+                            <input type="text" value="" placeholder="buscar.." name="search" id="search-input" />
                         </form>
                     </div>
                 </div>
@@ -80,7 +92,7 @@
             <a href="https://www.linkedin.com/in/politica-minera-chilena-b85996201/"><i class="fab fa-linkedin" style="color:blue;"></i></a>
         </p>
         <p>
-            <a href="#">Back to top</a>
+            <a href="#">Volver arriba</a>
         </p>
     </footer>
     <script src="<?= base_url('bootstrap-5.0.0-beta2-dist/js/bootstrap.bundle.min.js') ?>"></script>

@@ -12,16 +12,10 @@ class UsuarioModel extends Model
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
 
     protected $allowedFields = ['*'];
 
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'activo';
-
-    protected $validationRules    = [];
-    protected $validationMessages = [];
-    protected $skipValidation     = false;
 }

@@ -14,19 +14,20 @@
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-success"><?= ucwords($post['categoria_nombre'] ) ?></strong>
+          <strong class="d-inline-block mb-2 text-success"><?= ucwords($post['categoria_nombre']) ?></strong>
           <h3 class="mb-0"><?= $post['titulo'] ?></h3>
           <div class="mb-1 text-muted"><?= date('d F Y', strtotime($post['create_at'])) ?></div>
-          <p class="mb-auto"><?= $post['subtitulo'] ?></p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          
+          <a href="#" class="stretched-link">Continuar leyendo</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <img src="<?= $post['imagen'] ?>" class="images" width="200" height="250">      
+          <img src="<?= $post['imagen'] ?>" class="images" width="200" height="250">
         </div>
       </div>
     </div>
+
+  <?php endforeach; ?>
 </div>
-<?php endforeach; ?>
 
 <div class="row">
   <div class="col-md-8">

@@ -25,30 +25,31 @@
       }
     }
   </style>
-
-
   <!-- Custom styles for this template -->
-  <link href="<?=base_url('css/signin.css')?>" rel="stylesheet">
+  <link href="<?= base_url('css/signin.css') ?>" rel="stylesheet">
 </head>
 
 <body class="text-center">
-
   <main class="form-signin">
-    <form>
-      <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-      <label for="inputEmail" class="visually-hidden">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="visually-hidden">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <div class="checkbox mb-3">
+    <?= form_open('login') ?>
+    <img class="mb-4" src="<?= base_url('logo.jpg') ?>" alt="" width="100">
+    <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
+    <?php if (isset($validation)) : ?>
+      <div class="alert alert-danger" role="alert">
+        <?= $validation->listErrors() ?>
+      </div>
+    <?php endif; ?>
+    <label for="username" class="visually-hidden">Username</label>
+    <input type="text" id="username" name="username" class="form-control" placeholder="Nombre de Usuario" required autofocus>
+    <label for="password" class="visually-hidden">Contraseña</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-    </form>
+      </div> -->
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
+    <?= form_close() ?>
   </main>
 </body>
 
