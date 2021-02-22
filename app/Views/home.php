@@ -17,7 +17,7 @@
           <strong class="d-inline-block mb-2 text-success"><?= ucwords($post['categoria_nombre']) ?></strong>
           <h3 class="mb-0"><?= $post['titulo'] ?></h3>
           <div class="mb-1 text-muted"><?= date('d F Y', strtotime($post['create_at'])) ?></div>
-          
+
           <a href="#" class="stretched-link">Continuar leyendo</a>
         </div>
         <div class="col-auto d-none d-lg-block">
@@ -99,6 +99,8 @@
         }
       }(document, 0, "infogram-async");
     </script>
+    <div class="p-4">
+    <iframe src="https://calendar.google.com/calendar/embed?height=300&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=America%2FSantiago&amp;src=ZWxjb3JyZW9kZWNyaXMyNEBnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=b3BzbW9ocDU3Y3VoZWpnbmRmOTY0cXRiZmNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=ZXMuY2wjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%237986CB&amp;color=%2333B679&amp;color=%23A79B8E&amp;color=%230B8043&amp;showTitle=0&amp;showPrint=0&amp;showNav=0&amp;showTabs=1&amp;showTz=0&amp;showCalendars=0" style="border:solid 1px #777" width="300" height="300" frameborder="0" scrolling="no"></iframe>    </div>
   </div>
 </div><!-- /.row -->
 <?= $this->endSection(); ?>

@@ -83,6 +83,7 @@
 
     <main class="container">
         <?= $this->renderSection('content') ?>
+        
     </main><!-- /.container -->
 
     <footer class="blog-footer">

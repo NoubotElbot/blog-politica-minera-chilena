@@ -4,20 +4,16 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
             <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>"><span class="fas fa-home"></span></a></li>
-            <li class="breadcrumb-item active" aria-current="page">Categoria</li>
+            <li class="breadcrumb-item active" aria-current="page">Post</li>
         </ol>
     </nav>
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
-            <h1 class="h4">Categorias</h1>
-            <p class="mb-0">Aqui puedes administrar las categorias de tus posts.</p>
+            <h1 class="h4">Posts</h1>
+            <p class="mb-0">Aqui puedes administrar tus Posts.</p>
         </div>
         <div>
-            <button class="btn btn-lg btn-outline-gray" data-bs-toggle="tooltip" data-bs-placement="left" title="Las categorías desactivadas no podrán ser incluidas en nuevos post, pero no afectarán los post existentes.">
-                <i class="far fa-question-circle me-1"></i>
-            </button>
-            <a href="<?= base_url('categoria/new') ?>" class="btn btn-sm btn-primary"><span class="fas fa-plus"></span> Nueva Categoría</a>
-
+            <a href="<?= base_url('post/new') ?>" class="btn btn-sm btn-primary"><span class="fas fa-plus"></span> Nuevo Post</a>
         </div>
     </div>
 </div>
@@ -34,7 +30,8 @@
                 <thead class="thead-light">
                     <tr>
                         <th class="border-0">#</th>
-                        <th class="border-0">Nombre</th>
+                        <th class="border-0">Titulo</th>
+                        <th class="border-0">Imagen</th>
                         <th class="border-0">Estado</th>
                         <th class="border-0">Registrado</th>
                         <th class="border-0">Ultima Modificacion</th>
@@ -42,27 +39,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($categorias)) : ?>
-                        <?php foreach ($categorias as $categoria) : ?>
+                    <?php if (!empty($posts)) : ?>
+                        <?php foreach ($posts as $post) : ?>
                             <tr>
                                 <td>
-                                    <a href="#" class="text-primary fw-bold"><?= $categoria['id'] ?></a>
+                                    <a href="#" class="text-primary fw-bold"><?= $post['id'] ?></a>
                                 </td>
                                 <td class="fw-bold">
-                                    <?= $categoria['categoria_nombre'] ?>
-                                <td>
-                                    <?= $categoria['activo'] == 1 ? 'Activo' : 'Desactivado' ?>
+                                <a tabindex="0" class="btn-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-content="<?= $post['titulo'] ?>"><?= substr($post['titulo'], 0, 20) . '...' ?></a>
+                                   
                                 </td>
                                 <td>
-                                    <?= $categoria['create_at'] ?>
+                                    <a href="<?= $post['imagen'] ?>" target="_blank" rel="noopener noreferrer"><?= $post['imagen'] ?></a>
                                 </td>
                                 <td>
-                                    <?= $categoria['update_at'] ?>
+                                    <?= $post['activo'] == 1 ? 'Activo' : 'Desactivado' ?>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('categoria/' . $categoria["slug"]) ?>" class="btn btn-sm btn-info" target="_blank" rel="noopener noreferrer">Ver Posts</a>
-                                    <a href="<?= base_url('categoria/' . $categoria['id'] . '/edit') ?>" class="btn btn-sm btn-secondary" title="Editar"><i class="fas fa-pen-square"></i></a>
-                                    <button class="btn btn-sm btn-<?= $categoria['activo'] == 1 ? 'danger' : 'outline-primary' ?>" onclick="borrar(<?= $categoria['id'] ?>,'<?= $categoria['categoria_nombre'] ?>',<?= $categoria['activo'] ?>)" title="<?= $categoria['activo'] == 1 ? 'Desactivar' : 'Activar' ?>"><?= $categoria['activo'] == 1 ? '<i class="fas fa-trash"></i>' : '<i class="fas fa-trash-restore"></i>' ?></button>
+                                    <?= $post['create_at'] ?>
+                                </td>
+                                <td>
+                                    <?= $post['update_at'] ?>
+                                </td>
+                                <td>
+                                    <a href="<?= base_url('post/' . $post["slug"]) ?>" class="btn btn-sm btn-info" target="_blank" rel="noopener noreferrer">Ver Posts</a>
+                                    <a href="<?= base_url('post/' . $post['id'] . '/edit') ?>" class="btn btn-sm btn-secondary" title="Editar"><i class="fas fa-pen-square"></i></a>
+                                    <button class="btn btn-sm btn-danger" onclick="borrar(<?= $post['id'] ?>,'<?= $post['titulo'] ?>',<?= $post['activo'] ?>)" title="Desactivar"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -74,6 +76,7 @@
                 </tbody>
             </table>
         </div>
+        <?= $pager->links() ?>
     </div>
 </div>
 <!-- Modal -->
@@ -105,9 +108,16 @@
             keyboard: false
         });
         var form = document.getElementById('formborrar');
-        form.setAttribute('action', `categoria/${id}`);
+        form.setAttribute('action', `post/${id}`);
         document.getElementById("p-text").innerHTML = `Esta seguro de que desea ${estado == 1 ? 'Desactivar' : 'Activar'} la categoría "${nombre}"`;
         myModal.show();
     }
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+        trigger: 'focus'
+    })
 </script>
 <?= $this->endSection() ?>

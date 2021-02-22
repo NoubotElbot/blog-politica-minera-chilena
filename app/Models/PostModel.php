@@ -13,7 +13,18 @@ class PostModel extends Model
 
     protected $returnType     = 'array';
 
-    protected $allowedFields = ['*'];
+    protected $allowedFields = [
+        'id',
+        'slug',
+        'titulo',
+        'subtitulo',
+        'cuerpo',
+        'imagen',
+        'activo',
+        'create_at',
+        'update_at',
+        'usuario_id'
+    ];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

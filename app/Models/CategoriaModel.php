@@ -11,11 +11,11 @@ class CategoriaModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $returnType     = 'array';
+    protected $returnType    = 'array';
 
-    protected $allowedFields = ['*'];
+    protected $allowedFields = ['id', 'categoria_nombre', 'activo', 'create_at', 'update_at', 'slug'];
 
     protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $createdField  = 'create_at';
+    protected $updatedField  = 'update_at';
 }

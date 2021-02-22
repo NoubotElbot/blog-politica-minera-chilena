@@ -17,7 +17,7 @@
 <body>
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
         <a class="navbar-brand me-lg-5" href="<?= base_url() ?>">
-            <img class="navbar-brand-dark" src="<?= base_url('logo.jpg') ?>" alt="Volt logo" /> <img class="navbar-brand-light" src="img/brand/dark.svg" alt="Volt logo" />
+            <img class="navbar-brand-dark" src="<?= base_url('logo.jpg') ?>" alt="Volt logo" /> <img class="navbar-brand-light" src="<?=base_url()?>/img/brand/dark.svg" alt="Volt logo" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
             <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
                 <div class="d-flex align-items-center">
                     <div class="user-avatar lg-avatar me-4">
-                        <img src="img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white" alt="Bonnie Green">
+                        <img src="<?=base_url()?>/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white" alt="Bonnie Green">
                     </div>
                     <div class="d-block">
                         <h2 class="h6">Hi, <?= session()->get('username') ?></h2>
@@ -46,64 +46,30 @@
                 <li class="nav-item">
                     <a href="<?= base_url() ?>" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
-                            <img src="img/brand/light.svg" height="20" width="20" alt="Volt Logo">
+                            <img src="<?=base_url()?>/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
                         </span>
                         <span class="mt-1 ms-1 sidebar-text">Politica Minera Chilena</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= $vista == 'dashboard' ? 'active' : '' ?>">
                     <a href="<?= base_url('dashboard') ?>" class="nav-link">
                         <span class="sidebar-icon"><span class="fas fa-chart-pie"></span></span>
                         <span class="sidebar-text">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-app">
-                        <span>
-                            <span class="sidebar-icon"><span class="fas fa-table"></span></span>
-                            <span class="sidebar-text">Categorias</span>
-                        </span>
-                        <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
-                    </span>
-                    <div class="multi-level collapse " role="list" id="submenu-app" aria-expanded="false">
-                        <ul class="flex-column nav">
-                            <li class="nav-item ">
-                                <a class="nav-link" href="<?= base_url('categoria') ?>">
-                                    <span class="sidebar-text">Listado</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="<?= base_url('categoria/new') ?>">
-                                    <span class="sidebar-text">Agregar</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <li class="nav-item <?= $vista == 'categoria' ? 'active' : '' ?>">
+                    <a href="<?= base_url('categoria') ?>" class="nav-link">
+                        <span class="sidebar-icon"><span class="fas fa-table"></span></span>
+                        <span class="sidebar-text">Categorias</span>
+                    </a>
                 </li>
-                <li class="nav-item">
-                    <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-pages">
-                        <span>
-                            <span class="sidebar-icon"><span class="far fa-file-alt"></span></span>
-                            <span class="sidebar-text">Post</span>
-                        </span>
-                        <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
-                    </span>
-                    <div class="multi-level collapse " role="list" id="submenu-pages" aria-expanded="false">
-                        <ul class="flex-column nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('post') ?>">
-                                    <span class="sidebar-text">Listado</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url('post/new') ?>">
-                                    <span class="sidebar-text">Nuevo Post</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                <li class="nav-item <?= $vista == 'post' ? 'active' : '' ?>">
+                    <a href="<?= base_url('post') ?>" class="nav-link">
+                        <span class="sidebar-icon"><span class="fas fa-file-alt"></span></span>
+                        <span class="sidebar-text">Posts</span>
+                    </a>
                 </li>
-                <li class="nav-item  active ">
+                <li class="nav-item <?= $vista == 'usuario' ? 'active' : '' ?>">
                     <a href="<?= base_url('usuario') ?>" class="nav-link">
                         <span class="sidebar-icon"><span class="fas fa-user-cog"></span></span>
                         <span class="sidebar-text">Usuarios</span>
@@ -131,7 +97,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="media d-flex align-items-center">
-                                    <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="img/team/profile-picture-3.jpg">
+                                    <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="<?=base_url()?>/img/team/profile-picture-3.jpg">
                                     <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                                         <span class="mb-0 font-small fw-bold"><?= session()->get('username') ?></span>
                                     </div>
@@ -152,7 +118,7 @@
         <footer class="footer section py-5">
             <div class="row">
                 <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                    <p class="mb-0 text-center text-xl-left">Ir a<span class="current-year"></span> <a class="text-primary fw-normal" href="<?= base_url() ?>" target="_blank"><?= base_url() ?></a></p>
+                    <p class="mb-0 text-center text-xl-left">Ir a<span class="current-year"></span> <a class="text-primary fw-normal" href="<?= base_url() ?>" target="_blank">Politica Minera Chilena</a></p>
                 </div>
 
                 <div class="col-12 col-lg-6">

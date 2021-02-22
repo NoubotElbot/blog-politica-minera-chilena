@@ -8,6 +8,7 @@ class Dashboard extends BaseController
 {
 	public function index()
 	{
-		return view('Dashboard/index');
+		$data['vista'] = 'dashboard';
+		return view('Dashboard/index', $data);
 	}
 }

@@ -35,7 +35,7 @@ $routes->setAutoRoute(false);
 //Inicio
 $routes->get('/', 'Home::index');
 //Usuarios - Login
-$routes->match(['get','post'],'login', 	'Login::index', ['filter' => 'noauth']);
+$routes->match(['get', 'post'], 'login', 	'Login::index', ['filter' => 'noauth']);
 $routes->get('logout',             		'Login::logout');
 $routes->get('usuario/new',             'Usuario::new', ['filter' => 'auth']);
 $routes->post('usuario',                'Usuario::create', ['filter' => 'auth']);
@@ -57,9 +57,9 @@ $routes->get('categoria/new',             'Categoria::new', ['filter' => 'auth']
 $routes->post('categoria',                'Categoria::create', ['filter' => 'auth']);
 $routes->get('categoria',                 'Categoria::index', ['filter' => 'auth']);
 $routes->get('categoria/(:segment)',      'Categoria::show/$1');
-$routes->get('categoria/(:segment)/edit', 'Categoria::edit/$1', ['filter' => 'auth']);
-$routes->put('categoria/(:segment)',      'Categoria::update/$1', ['filter' => 'auth']);
-$routes->delete('categoria/(:segment)',   'Categoria::delete/$1', ['filter' => 'auth']);
+$routes->get('categoria/(:num)/edit', 	  'Categoria::edit/$1', ['filter' => 'auth']);
+$routes->put('categoria/(:num)',          'Categoria::update/$1', ['filter' => 'auth']);
+$routes->delete('categoria/(:num)',       'Categoria::delete/$1', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------
