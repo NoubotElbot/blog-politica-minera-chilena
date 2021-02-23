@@ -50,7 +50,7 @@ $routes->post('post',                'Post::create', ['filter' => 'auth']);
 $routes->get('post',                 'Post::index', ['filter' => 'auth']);
 $routes->get('post/(:segment)',      'Post::show/$1');
 $routes->get('post/(:num)/edit', 	 'Post::edit/$1', ['filter' => 'auth']);
-$routes->put('post/(:num)',          'Post::update/$1', ['filter' => 'auth']);
+$routes->post('post/update/(:num)',  'Post::update/$1', ['filter' => 'auth']);
 $routes->delete('post/(:num)',       'Post::delete/$1', ['filter' => 'auth']);
 //categorias
 $routes->get('categoria/new',             'Categoria::new', ['filter' => 'auth']);

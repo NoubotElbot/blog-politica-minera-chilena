@@ -26,7 +26,7 @@
 <div class="card border-light shadow-sm mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded">
+            <table class="table table-centered table-nowrap mb-0 rounded text-center">
                 <thead class="thead-light">
                     <tr>
                         <th class="border-0">#</th>
@@ -46,25 +46,29 @@
                                     <a href="#" class="text-primary fw-bold"><?= $post['id'] ?></a>
                                 </td>
                                 <td class="fw-bold">
-                                <a tabindex="0" class="btn-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-content="<?= $post['titulo'] ?>"><?= substr($post['titulo'], 0, 20) . '...' ?></a>
-                                   
+                                    <a tabindex="0" class="btn-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-content="<?= $post['titulo'] ?>"><?= substr($post['titulo'], 0, 15) . '...' ?></a>
+
                                 </td>
                                 <td>
-                                    <a href="<?= $post['imagen'] ?>" target="_blank" rel="noopener noreferrer"><?= $post['imagen'] ?></a>
+                                    <?php if ($post['imagen'] != null) : ?>
+                                        <a href="<?= $post['imagen'] ?>" class="btn-lg" target="_blank" rel="noopener noreferrer">
+                                            <i class="far fa-image"></i>
+                                        </a>
+                                    <?php endif; ?>
                                 </td>
                                 <td>
                                     <?= $post['activo'] == 1 ? 'Activo' : 'Desactivado' ?>
                                 </td>
                                 <td>
-                                    <?= $post['create_at'] ?>
+                                    <?= date('d-m-Y H:i:s', strtotime($post['create_at'])) ?>
                                 </td>
                                 <td>
-                                    <?= $post['update_at'] ?>
+                                    <?= date('d-m-Y H:i:s', strtotime($post['update_at'])) ?>
                                 </td>
                                 <td>
                                     <a href="<?= base_url('post/' . $post["slug"]) ?>" class="btn btn-sm btn-info" target="_blank" rel="noopener noreferrer">Ver Posts</a>
                                     <a href="<?= base_url('post/' . $post['id'] . '/edit') ?>" class="btn btn-sm btn-secondary" title="Editar"><i class="fas fa-pen-square"></i></a>
-                                    <button class="btn btn-sm btn-danger" onclick="borrar(<?= $post['id'] ?>,'<?= $post['titulo'] ?>',<?= $post['activo'] ?>)" title="Desactivar"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-<?= $post['activo'] == 1 ? 'danger' : 'outline-primary' ?>" onclick="borrar(<?= $post['id'] ?>,<?= $post['activo'] ?>)" title="<?= $post['activo'] == 1 ? 'Desactivar' : 'Activar' ?>"><?= $post['activo'] == 1 ? '<i class="fas fa-trash"></i>' : '<i class="fas fa-trash-restore"></i>' ?></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -103,13 +107,13 @@
 <?= $this->endSection() ?>
 <?= $this->section('script') ?>
 <script type="text/javascript">
-    function borrar(id, nombre, estado) {
+    function borrar(id, estado) {
         var myModal = new bootstrap.Modal(document.getElementById('modal-borrar'), {
             keyboard: false
         });
         var form = document.getElementById('formborrar');
         form.setAttribute('action', `post/${id}`);
-        document.getElementById("p-text").innerHTML = `Esta seguro de que desea ${estado == 1 ? 'Desactivar' : 'Activar'} la categoría "${nombre}"`;
+        document.getElementById("p-text").innerHTML = `Esta seguro de que desea ${estado == 1 ? 'Desactivar' : 'Activar'} el Post #${id}`;
         myModal.show();
     }
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))

@@ -83,7 +83,7 @@
 
     <main class="container">
         <?= $this->renderSection('content') ?>
-        
+
     </main><!-- /.container -->
 
     <footer class="blog-footer">
@@ -97,6 +97,7 @@
         </p>
     </footer>
     <script src="<?= base_url('bootstrap-5.0.0-beta2-dist/js/bootstrap.bundle.min.js') ?>"></script>
+    <?= $this->renderSection('script') ?>
 </body>
 
 </html>

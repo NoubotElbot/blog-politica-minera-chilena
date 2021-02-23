@@ -27,6 +27,6 @@ class PostModel extends Model
     ];
 
     protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $createdField  = 'create_at';
+    protected $updatedField  = 'update_at';
 }

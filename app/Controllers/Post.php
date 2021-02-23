@@ -11,8 +11,8 @@ class Post extends BaseController
 	public function index()
 	{
 		$model = new PostModel;
-		$data['posts'] = $model->paginate(10);
-        $data['pager'] = $model->pager;
+		$data['posts'] = $model->orderBy('id', 'desc')->paginate(10);
+		$data['pager'] = $model->pager;
 		$data['vista'] = $this->vista;
 		return view('Dashboard/Post/index', $data);
 	}
@@ -26,25 +26,43 @@ class Post extends BaseController
 	public function create()
 	{
 		$rules = [
-			'post_nombre' => 'required|is_unique[post.post_nombre]'
+			'titulo' => 'required|is_unique[post.titulo]',
+			'subtitulo' => 'required',
+			'contenido' => 'required',
+			'portada' => 'uploaded[portada]|is_image[portada]'
 		];
 		$menssages = [
-			'post_nombre' => [
-				'required' => 'Debe ingresar el nombre de la categoría',
-				'is_unique' => 'Ya existe una categoría con ese nombre'
-			]
+			'titulo' => [
+				'required' => 'Debe ingresar el título',
+				'is_unique' => 'Ya existe un post con ese título'
+			],
+			'subtitulo' => [
+				'required' => 'Debe ingresar el subtítulo'
+			],
+			'contenido' => [
+				'required' => 'Debe ingresar el contenido'
+			],
 		];
 		if (!$this->validate($rules, $menssages)) {
 			session()->setFlashdata('validator', $this->validator);
 			return redirect()->to('post/new');
 		} else {
+			$file = $this->request->getFile('portada');
+			if ($file->isValid() && !$file->hasMoved()) {
+				$name = $file->getRandomName();
+				$file->move('./uploads', $name);
+			}
 			$datos = [
-				'post_nombre' => $this->request->getVar('post_nombre'),
-				'slug' => strtolower($this->eliminar_acentos($this->request->getVar('post_nombre')))
+				'titulo' => $this->request->getPost('titulo'),
+				'subtitulo' => $this->request->getPost('subtitulo'),
+				'cuerpo' => $this->request->getPost('contenido'),
+				'imagen' => 'uploads/' . $name,
+				'usuario_id' => session()->get('id'),
+				'slug' => preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($this->eliminar_acentos($_POST["titulo"])))),
 			];
 			$model = new PostModel;
 			$model->save($datos);
-			session()->setFlashdata('success', "Nueva post registrada exitosamente " . $datos['post_nombre']);
+			session()->setFlashdata('success', "Nueva post registrada exitosamente ");
 			return redirect('post');
 		}
 	}
@@ -60,23 +78,41 @@ class Post extends BaseController
 	public function update($id)
 	{
 		$rules = [
-			'post_nombre' => "required|is_unique[post.post_nombre,id,$id]"
+			'titulo' => "required|is_unique[post.titulo,id,$id]",
+			'subtitulo' => 'required',
+			'contenido' => 'required',
 		];
 		$menssages = [
-			'post_nombre' => [
-				'required' => 'Debe ingresar el nombre de la categoría',
-				'is_unique' => 'Ya existe una categoría con ese nombre'
+			'titulo' => [
+				'required' => 'Debe ingresar el título',
+				'is_unique' => 'Ya existe un post con ese título'
+			],
+			'subtitulo' => [
+				'required' => 'Debe ingresar el subtítulo'
+			],
+			'contenido' => [
+				'required' => 'Debe ingresar el contenido'
 			]
 		];
 		if (!$this->validate($rules, $menssages)) {
 			session()->setFlashdata('validator', $this->validator);
-			return redirect()->to('post/' . $id . '/edit');
+			return redirect()->to('/post' . '/' . $id . '/edit');
 		} else {
 			$datos = [
-				'post_nombre' => $this->request->getVar('post_nombre'),
-				'slug' => strtolower($this->eliminar_acentos($this->request->getVar('post_nombre'))) //El slug es el mismo nombre pero en minusculas y sin tildes
-
+				'titulo' => $this->request->getPost('titulo'),
+				'subtitulo' => $this->request->getPost('subtitulo'),
+				'cuerpo' => $this->request->getPost('contenido'),
+				'usuario_id' => session()->get('id'),
+				'slug' => preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($this->eliminar_acentos($_POST["titulo"])))),
 			];
+			
+			$file = $this->request->getFile('portada');
+			if ($file->isValid() && !$file->hasMoved()) {
+				$name = $file->getRandomName();
+				$file->move('./uploads', $name);
+				$datos['imagen'] = 'uploads/' . $name;
+			}
+
 			$model = new PostModel;
 			$model->update($id, $datos);
 			session()->setFlashdata('success', "Registro #$id modificado exitosamente");
@@ -97,5 +133,50 @@ class Post extends BaseController
 		}
 		return redirect('post');
 	}
+	protected function eliminar_acentos($cadena)
+	{
+		//Reemplazamos la A y a
+		$cadena = str_replace(
+			array('Á', 'À', 'Â', 'Ä', 'á', 'à', 'ä', 'â', 'ª'),
+			array('A', 'A', 'A', 'A', 'a', 'a', 'a', 'a', 'a'),
+			$cadena
+		);
 
+		//Reemplazamos la E y e
+		$cadena = str_replace(
+			array('É', 'È', 'Ê', 'Ë', 'é', 'è', 'ë', 'ê'),
+			array('E', 'E', 'E', 'E', 'e', 'e', 'e', 'e'),
+			$cadena
+		);
+
+		//Reemplazamos la I y i
+		$cadena = str_replace(
+			array('Í', 'Ì', 'Ï', 'Î', 'í', 'ì', 'ï', 'î'),
+			array('I', 'I', 'I', 'I', 'i', 'i', 'i', 'i'),
+			$cadena
+		);
+
+		//Reemplazamos la O y o
+		$cadena = str_replace(
+			array('Ó', 'Ò', 'Ö', 'Ô', 'ó', 'ò', 'ö', 'ô'),
+			array('O', 'O', 'O', 'O', 'o', 'o', 'o', 'o'),
+			$cadena
+		);
+
+		//Reemplazamos la U y u
+		$cadena = str_replace(
+			array('Ú', 'Ù', 'Û', 'Ü', 'ú', 'ù', 'ü', 'û'),
+			array('U', 'U', 'U', 'U', 'u', 'u', 'u', 'u'),
+			$cadena
+		);
+
+		//Reemplazamos la N, n, C y c
+		$cadena = str_replace(
+			array('Ñ', 'ñ', 'Ç', 'ç'),
+			array('N', 'n', 'C', 'c'),
+			$cadena
+		);
+
+		return $cadena;
+	}
 }

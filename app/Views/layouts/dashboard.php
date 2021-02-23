@@ -133,6 +133,8 @@
         </footer>
     </main>
     <!-- Core -->
+    <script src="<?=base_url('js/jquery-3.5.1.min.js')?>" ></script>
+
     <script src="<?= base_url('bootstrap-5.0.0-beta2-dist/js/bootstrap.bundle.min.js') ?>"></script>
     <!-- Volt JS -->
     <!-- <script src="<?= base_url('js/volt.js') ?>"></script> -->

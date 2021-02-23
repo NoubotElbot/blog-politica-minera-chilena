@@ -16,6 +16,20 @@
 */
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap");
 
+.contenedor-img{
+    display:flex;
+    justify-content: center;
+    padding: 2px;
+    height: 180px;
+}
+.img-prev{
+    border:solid black 2px;
+    background-color: gray;
+    max-width: 60%;
+    object-fit: contain;
+    color: white;
+}
+
 .datepicker {
     display: none;
 }
