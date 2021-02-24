@@ -37,21 +37,18 @@ $routes->get('/', 'Home::index');
 //Usuarios - Login
 $routes->match(['get', 'post'], 'login', 	'Login::index', ['filter' => 'noauth']);
 $routes->get('logout',             		'Login::logout');
-$routes->get('usuario/new',             'Usuario::new', ['filter' => 'auth']);
-$routes->post('usuario',                'Usuario::create', ['filter' => 'auth']);
+//$routes->get('usuario/new',             'Usuario::new', ['filter' => 'auth']);
+//$routes->post('usuario',                'Usuario::create', ['filter' => 'auth']);
 $routes->get('usuario',                 'Usuario::index', ['filter' => 'auth']);
-$routes->get('usuario/(:segment)/edit', 'Usuario::edit/$1', ['filter' => 'auth']);
-$routes->put('usuario/(:segment)',      'Usuario::update/$1', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'usuario/(:num)/edit', 'Usuario::edit/$1', ['filter' => 'auth']);
 //Dashboard
-$routes->get('dashboard',            'Dashboard::index', ['filter' => 'auth']);
+$routes->get('dashboard',            	'Dashboard::index', ['filter' => 'auth']);
 // Posts
-$routes->get('post/new',             'Post::new', ['filter' => 'auth']);
-$routes->post('post',                'Post::create', ['filter' => 'auth']);
-$routes->get('post',                 'Post::index', ['filter' => 'auth']);
-$routes->get('post/(:segment)',      'Post::show/$1');
-$routes->get('post/(:num)/edit', 	 'Post::edit/$1', ['filter' => 'auth']);
-$routes->post('post/update/(:num)',  'Post::update/$1', ['filter' => 'auth']);
-$routes->delete('post/(:num)',       'Post::delete/$1', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'post/new', 			'Post::create', ['filter' => 'auth']);
+$routes->get('post',                 				'Post::index', ['filter' => 'auth']);
+$routes->get('post/(:segment)',      				'Post::show/$1');
+$routes->match(['get', 'post'], 'post/(:num)/edit',	'Post::edit/$1', ['filter' => 'auth']);
+$routes->delete('post/(:num)',       				'Post::delete/$1', ['filter' => 'auth']);
 //categorias
 $routes->get('categoria/new',             'Categoria::new', ['filter' => 'auth']);
 $routes->post('categoria',                'Categoria::create', ['filter' => 'auth']);

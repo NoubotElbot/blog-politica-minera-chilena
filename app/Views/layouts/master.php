@@ -68,7 +68,7 @@
             </div>
         </header>
 
-        <div class="nav-scroller py-1 px-3 mb-2 bg-light">
+        <div class="nav-scroller py-1 px-3 mb-2">
             <nav class="nav d-flex justify-content-between">
                 <a class="p-2 link-secondary" href="<?= base_url('categoria/empresas') ?>">Empresas</a>
                 <a class="p-2 link-secondary" href="<?= base_url('categoria/politica') ?>">Politica</a>

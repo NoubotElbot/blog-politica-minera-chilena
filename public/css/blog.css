@@ -6,6 +6,11 @@ body{
   background-color: #ffffff;
 }
 
+.img-card{
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
 .search-bar{
   margin-right: 1rem;
 }

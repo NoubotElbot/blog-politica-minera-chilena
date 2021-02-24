@@ -22,19 +22,30 @@
         <div class="card border-light shadow-sm components-section">
             <div class="card-body">
                 <h1 class="h4">Formulario de edicion de noticias</h1>
-                <?php if (session()->get('validator')) : ?>
-                    <div class="alert alert-danger alert-dismissible fade show pb-0" role="alert">
-                        <?= session()->get('validator')->listErrors() ?>
+                <?php if (isset($validation)) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show pb-0 mb-4" role="alert">
+                        <?= $validation->listErrors() ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php endif ?>
-                <?= form_open('post/update/' . $post['id'], 'id= "form" class="row g-3" enctype="multipart/form-data"') ?>
-                <div class="col-md-6 mb-3">
+                <?= form_open_multipart('post/'.$post['id'].'/edit', ['id' => 'form', 'class' => 'row g-3']) ?>
+                <div class="col-md-4 mb-3">
                     <label for="portada" class="form-label">Portada</label>
                     <input class="form-control" accept="image/png,image/jpeg" id="portada" name="portada" type="file">
                 </div>
-                <div class="col-md-6 mb-3  contenedor-img">
+                <div class="col-md-8 mb-3  contenedor-img">
                     <img id="img-prev" class="img-prev" src="<?= base_url($post['imagen']) ?>" alt="Tu imagen" />
+                </div>
+                <div class="col-md-6 col-sm-12 mb-3">
+                    <label for="categoria">Categorias</label>
+                    <select name="categoria[]" id="categoria" size="4" class="form-select" multiple required>
+                        <?php foreach ($categorias as $categoria) : ?>
+                            <option value="<?= $categoria['id'] ?>" <?php foreach ($categoria_post as $cp) : echo $cp['categoria_id'] == $categoria['id'] ? 'selected' : '';
+                                                                    endforeach; ?>>
+                                <?= $categoria['categoria_nombre'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="col-md-8 mb-3">
                     <label for="titulo">Título</label>

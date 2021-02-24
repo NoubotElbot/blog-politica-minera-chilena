@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\PostModel;
 use App\Models\CategoriaModel;
 
 class Categoria extends BaseController
@@ -14,6 +15,18 @@ class Categoria extends BaseController
 		$data['categorias'] = $model->findAll();
 		$data['vista'] = $this->vista;
 		return view('Dashboard/Categoria/index', $data);
+	}
+	//post por categorias
+	public function show($slug){
+		$model = new PostModel;
+		$data['posts'] = $model->select('post.*')
+		->join('categoria_post','post.id = categoria_post.post_id')
+		->join('categoria','categoria.id = categoria_post.categoria_id')
+		->where('categoria.slug',$slug)
+		->paginate(2);
+		$data['pager'] = $model->pager;
+		$data['vista'] = $this->vista;
+		return view('Dashboard/Categoria/show', $data);
 	}
 
 	public function new()

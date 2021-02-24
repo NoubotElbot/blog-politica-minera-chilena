@@ -17,7 +17,7 @@ $pager->setSurroundCount(2);
                 </a>
             </li>
         <?php endif ?>
-        <li class="page-item <?= !$pager->hasPrevious() ? 'disabled':'' ?>">
+        <li class="page-item <?= !$pager->hasPreviousPage() ? 'disabled':'' ?>">
             <a class="page-link" href="<?= $pager->getPreviousPage() ?>" aria-label="<?= lang('Pager.previous') ?>">
                 <span aria-hidden="true">Anterior</span>
             </a>
@@ -29,7 +29,7 @@ $pager->setSurroundCount(2);
                 </a>
             </li>
         <?php endforeach ?>
-        <li class="page-item <?= !$pager->hasNext() ? 'disabled':'' ?>">
+        <li class="page-item <?= !$pager->hasNextPage() ? 'disabled':'' ?>">
             <a class="page-link" href="<?= $pager->getNextPage() ?>" aria-label="<?= lang('Pager.next') ?>">
                 <span aria-hidden="true">Siguiente</span>
             </a>

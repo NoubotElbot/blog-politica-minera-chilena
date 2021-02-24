@@ -10,31 +10,31 @@
     <div class="d-flex justify-content-between w-100 flex-wrap">
         <div class="mb-3 mb-lg-0">
             <h1 class="h4">Posts</h1>
-            <p class="mb-0">Aqui puedes administrar tus Posts.</p>
+            <p class="mb-0">Aquí puedes administrar tus Posts.</p>
         </div>
         <div>
             <a href="<?= base_url('post/new') ?>" class="btn btn-sm btn-primary"><span class="fas fa-plus"></span> Nuevo Post</a>
         </div>
     </div>
 </div>
-<?php if (session()->get('success')) : ?>
+<?php if (session()->getFlashdata('success')) : ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?= session()->get('success') ?>
+        <?= session()->getFlashdata('success') ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
 <div class="card border-light shadow-sm mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded text-center">
+            <table class="table table-centered table-nowrap mb-0 rounded text-justify">
                 <thead class="thead-light">
                     <tr>
                         <th class="border-0">#</th>
-                        <th class="border-0">Titulo</th>
-                        <th class="border-0">Imagen</th>
+                        <th class="border-0">Título</th>
+                        <th class="border-0">Categorias</th>
                         <th class="border-0">Estado</th>
                         <th class="border-0">Registrado</th>
-                        <th class="border-0">Ultima Modificacion</th>
+                        <th class="border-0">Última Modificacion</th>
                         <th class="border-0">Opciones</th>
                     </tr>
                 </thead>
@@ -47,14 +47,11 @@
                                 </td>
                                 <td class="fw-bold">
                                     <a tabindex="0" class="btn-link" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-content="<?= $post['titulo'] ?>"><?= substr($post['titulo'], 0, 15) . '...' ?></a>
-
                                 </td>
                                 <td>
-                                    <?php if ($post['imagen'] != null) : ?>
-                                        <a href="<?= $post['imagen'] ?>" class="btn-lg" target="_blank" rel="noopener noreferrer">
-                                            <i class="far fa-image"></i>
-                                        </a>
-                                    <?php endif; ?>
+                                    <?php foreach ($categorias as $c) : ?>
+                                        <?= $c['post_id'] == $post['id'] ? $c['categoria_nombre'] . '<br>' : '' ?>
+                                    <?php endforeach; ?>
                                 </td>
                                 <td>
                                     <?= $post['activo'] == 1 ? 'Activo' : 'Desactivado' ?>

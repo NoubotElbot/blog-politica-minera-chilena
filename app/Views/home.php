@@ -1,54 +1,54 @@
 <?= $this->extend('layouts/master') ?>
 
 <?= $this->section('content') ?>
-<div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
-  <div class="col-md-6 px-0">
-    <h1 class="display-4 fst-italic">Este es un titúlo interesante para mi noticia</h1>
-    <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-    <p class="lead mb-0"><a href="#" class="text-white fw-bold">Continue reading...</a></p>
+<?php if (!empty($lastPost)) : ?>
+  <style>
+    .bg-img {
+      background-size: cover;
+      background-image: url(<?= base_url($lastPost['imagen']) ?>);
+    }
+  </style>
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark bg-img">
+    <div class="col-md-6 px-0">
+      <h1 class="display-4 fst-italic"><?= $lastPost['titulo'] ?></h1>
+      <p class="lead my-3"><?= $lastPost['subtitulo'] ?></p>
+      <p class="lead mb-0"><a href="<?= base_url('post/' . $lastPost['slug']) ?>" class="text-white fw-bold">Continuar leyendo...</a></p>
+    </div>
   </div>
-</div>
-
+<?php endif; ?>
 <div class="row mb-2">
-  <?php foreach ($lastPostsByCategory as $post) : ?>
+  <?php foreach ($postSegundoTercero as $p) : ?>
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-success"><?= ucwords($post['categoria_nombre']) ?></strong>
-          <h3 class="mb-0"><?= $post['titulo'] ?></h3>
-          <div class="mb-1 text-muted"><?= date('d F Y', strtotime($post['create_at'])) ?></div>
-
-          <a href="#" class="stretched-link">Continuar leyendo</a>
+          <h3 class="mb-0"><?= $p['titulo'] ?></h3>
+          <div class="mb-1 text-muted"><?= date('d F Y', strtotime($p['create_at'])) ?></div>
+          <a href="<?= base_url('post/' . $p['slug']) ?>" class="stretched-link">Continuar leyendo</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <img src="<?= $post['imagen'] ?>" class="images" width="200" height="250">
+          <img src="<?= $p['imagen'] ?>" class="images" width="200" height="250">
         </div>
       </div>
     </div>
-
   <?php endforeach; ?>
 </div>
 
 <div class="row">
   <div class="col-md-8">
     <h3 class="pb-4 mb-4 fst-italic border-bottom">
-      Noticias mas recientes
+      Noticias mas antiguas
     </h3>
-    <?php foreach ($lastPosts as $post) : ?>
-      <article class="blog-post">
-        <h2 class="blog-post-title"><?= $post['titulo'] ?></h2>
-        <p class="blog-post-meta"><?= date('d F Y', strtotime($post['create_at'])) ?></p>
-        <p><?= $post['subtitulo'] ?></p>
-        <hr>
-        <?= $post['cuerpo'] ?>
-      </article><!-- /.blog-post -->
-    <?php endforeach; ?>
-
-    <nav class="blog-pagination" aria-label="Pagination">
-      <a class="btn btn-outline-primary" href="#">Older</a>
-      <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-    </nav>
-
+    <?php if (!empty($postCuartoQuinto)) : ?>
+      <?php foreach ($postCuartoQuinto as $p) : ?>
+        <article class="blog-post">
+          <h2 class="blog-post-title"><?= $p['titulo'] ?></h2>
+          <p class="blog-post-meta"><?= date('d F Y', strtotime($p['create_at'])) ?></p>
+          <p><?= $p['subtitulo'] ?></p>
+          <hr>
+          <?= $p['cuerpo'] ?>
+        </article><!-- /.blog-post -->
+      <?php endforeach; ?>
+    <?php endif; ?>
   </div>
 
   <div class="col-md-4">
