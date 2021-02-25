@@ -20,7 +20,10 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override();
+$routes->set404Override(function()
+{
+    echo view('errors/html/404');
+});
 $routes->setAutoRoute(false);
 
 /*
@@ -34,6 +37,7 @@ $routes->setAutoRoute(false);
 
 //Inicio
 $routes->get('/', 'Home::index');
+$routes->get('/somos', 'Home::somos');
 //Usuarios - Login
 $routes->match(['get', 'post'], 'login', 	'Login::index', ['filter' => 'noauth']);
 $routes->get('logout',             		'Login::logout');
@@ -44,7 +48,7 @@ $routes->match(['get', 'post'], 'usuario/(:num)/edit', 'Usuario::edit/$1', ['fil
 //Dashboard
 $routes->get('dashboard',            	'Dashboard::index', ['filter' => 'auth']);
 // Posts
-$routes->match(['get', 'post'], 'post/new', 			'Post::create', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'post/new', 		'Post::create', ['filter' => 'auth']);
 $routes->get('post',                 				'Post::index', ['filter' => 'auth']);
 $routes->get('post/(:segment)',      				'Post::show/$1');
 $routes->match(['get', 'post'], 'post/(:num)/edit',	'Post::edit/$1', ['filter' => 'auth']);
@@ -57,6 +61,8 @@ $routes->get('categoria/(:segment)',      'Categoria::show/$1');
 $routes->get('categoria/(:num)/edit', 	  'Categoria::edit/$1', ['filter' => 'auth']);
 $routes->put('categoria/(:num)',          'Categoria::update/$1', ['filter' => 'auth']);
 $routes->delete('categoria/(:num)',       'Categoria::delete/$1', ['filter' => 'auth']);
+
+
 
 /*
  * --------------------------------------------------------------------

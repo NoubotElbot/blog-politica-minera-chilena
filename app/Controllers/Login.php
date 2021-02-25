@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\SesionModel;
 use App\Models\UsuarioModel;
 
 class Login extends BaseController
@@ -47,6 +48,15 @@ class Login extends BaseController
 			'isLoggedIn' => true,
 		];
 		session()->set($data);
+
+		$model = new SesionModel();
+		$data = [
+			'ip_address' => $this->request->getIPAddress(),
+			'usuario_id' => $user['id'],
+			'create_at' => date('Y-m-d H:i:s')
+		];
+		
+		$model->save($data);
 		return true;
 	}
 

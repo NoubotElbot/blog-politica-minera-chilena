@@ -61,7 +61,7 @@
                             <label for="search-input" id="search-input-label">
                                 <i class="fas fa-search"></i>
                             </label>
-                            <input type="text" value="" placeholder="buscar.." name="search" id="search-input" />
+                            <input type="text" value="" placeholder="buscar.." name="buscar" id="search-input" />
                         </form>
                     </div>
                 </div>
@@ -70,20 +70,16 @@
 
         <div class="nav-scroller py-1 px-3 mb-2">
             <nav class="nav d-flex justify-content-between">
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/empresas') ?>">Empresas</a>
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/politica') ?>">Politica</a>
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/tecnologia') ?>">Tecnología</a>
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/medio-ambiente') ?>">Medio Ambiente</a>
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/economia') ?>">Economía</a>
+                <?php foreach($categorias as $c): ?>
+                <a class="p-2 link-secondary" href="<?= base_url('categoria/'.$c['slug']) ?>"><?=$c['categoria_nombre']?></a>
+                <?php endforeach; ?>
                 <a class="p-2 link-secondary" href="<?= base_url('somos') ?>">Somos</a>
-                <a class="p-2 link-secondary" href="<?= base_url('contacto') ?>">Contacto</a>
             </nav>
         </div>
     </div>
 
     <main class="container">
         <?= $this->renderSection('content') ?>
-
     </main><!-- /.container -->
 
     <footer class="blog-footer">
@@ -91,6 +87,8 @@
             <a href="https://www.instagram.com/politica_minera_chilena/"><i class="fab fa-instagram text-danger"></i></a>
             <a href="https://www.facebook.com/politica.minerachilena"><i class="fab fa-facebook text-primary"></i></a>
             <a href="https://www.linkedin.com/in/politica-minera-chilena-b85996201/"><i class="fab fa-linkedin" style="color:blue;"></i></a>
+            <a href="https://twitter.com/ChilenaMinera"><i class="fab fa-twitter text-info"></i></i></a>
+            <a href="https://app.netmin.cl/profile/c/38cf9cad-792b-418b-bdd9-f5b99907a8c2"><img src="<?=base_url('netmin_logo.png')?>" alt="NetMin" width="60px" ></a>
         </p>
         <p>
             <a href="#">Volver arriba</a>

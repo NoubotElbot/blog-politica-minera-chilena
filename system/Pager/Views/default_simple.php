@@ -7,8 +7,14 @@ use CodeIgniter\Pager\PagerRenderer;
  */
 $pager->setSurroundCount(0);
 ?>
-<nav>
-	<ul class="pager">
+
+<nav class="blog-pagination" aria-label="Pagination">
+<a class="btn btn-outline-primary <?= $pager->hasNext() ? '' : 'disabled' ?>" href="<?= $pager->getnext() ?? '#' ?>" >Antiguo</a>
+
+	<a class="btn btn-outline-primary <?= $pager->hasPrevious() ? '' : 'disabled' ?>" href="<?= $pager->getPrevious() ?? '#' ?>">Reciente</a>
+</nav>
+<!-- <nav>
+	<ul class="pager " >
 		<li <?= $pager->hasPrevious() ? '' : 'class="disabled"' ?>>
 			<a href="<?= $pager->getPrevious() ?? '#' ?>" aria-label="<?= lang('Pager.previous') ?>">
 				<span aria-hidden="true"><?= lang('Pager.newer') ?></span>
@@ -20,4 +26,4 @@ $pager->setSurroundCount(0);
 			</a>
 		</li>
 	</ul>
-</nav>
+</nav> -->

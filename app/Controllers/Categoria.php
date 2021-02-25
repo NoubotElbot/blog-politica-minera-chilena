@@ -25,7 +25,9 @@ class Categoria extends BaseController
 		->where('categoria.slug',$slug)
 		->paginate(2);
 		$data['pager'] = $model->pager;
-		$data['vista'] = $this->vista;
+		$model = new CategoriaModel();
+		$data['vista'] =  $model->select('categoria_nombre')->where('slug',$slug)->first();
+		$data['categorias'] = $model->findAll();
 		return view('Dashboard/Categoria/show', $data);
 	}
 

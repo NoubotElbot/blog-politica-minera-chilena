@@ -17,7 +17,7 @@
 <body>
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-md-none">
         <a class="navbar-brand me-lg-5" href="<?= base_url() ?>">
-            <img class="navbar-brand-dark" src="<?= base_url('logo.jpg') ?>" alt="Volt logo" /> <img class="navbar-brand-light" src="<?=base_url()?>/img/brand/dark.svg" alt="Volt logo" />
+            <img class="navbar-brand-dark" src="<?= base_url('logo.jpg') ?>" alt="Volt logo" /> <img class="navbar-brand-light" src="<?= base_url() ?>/img/brand/dark.svg" alt="Volt logo" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
             <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
                 <div class="d-flex align-items-center">
                     <div class="user-avatar lg-avatar me-4">
-                        <img src="<?=base_url()?>/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-white" alt="Bonnie Green">
+                        <img src="<?= base_url() ?>/user-logo.png" class="card-img-top rounded-circle border-white" alt="<?= session()->get('username') ?>">
                     </div>
                     <div class="d-block">
                         <h2 class="h6">Hi, <?= session()->get('username') ?></h2>
@@ -46,7 +46,7 @@
                 <li class="nav-item">
                     <a href="<?= base_url() ?>" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
-                            <img src="<?=base_url()?>/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
+                            <img src="<?= base_url() ?>/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
                         </span>
                         <span class="mt-1 ms-1 sidebar-text">Politica Minera Chilena</span>
                     </a>
@@ -84,28 +84,21 @@
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
                     <div class="d-flex align-items-center">
-                        <!-- Search form -->
-                        <form class="navbar-search form-inline" id="navbar-search-main">
-                            <div class="input-group input-group-merge search-bar">
-                                <span class="input-group-text" id="topbar-addon"><span class="fas fa-search"></span></span>
-                                <input type="text" class="form-control" id="topbarInputIconLeft" placeholder="Search" aria-label="Search" aria-describedby="topbar-addon">
-                            </div>
-                        </form>
+
                     </div>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="media d-flex align-items-center">
-                                    <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="<?=base_url()?>/img/team/profile-picture-3.jpg">
+                                    <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="<?= base_url() ?>/user-logo.png">
                                     <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                                         <span class="mb-0 font-small fw-bold"><?= session()->get('username') ?></span>
                                     </div>
                                 </div>
                             </a>
                             <div class="dropdown-menu dashboard-dropdown dropdown-menu-end mt-2 py-0">
-                                <a class="dropdown-item rounded-top fw-bold" href="#"><span class="far fa-user-circle"></span>Mi Perfil</a>
-                                <a class="dropdown-item fw-bold" href="#"><span class="fas fa-user-shield"></span>Support</a>
+                                <a class="dropdown-item rounded-top fw-bold" href="<?= base_url('usuario/' . session()->get('id') . '/edit') ?>"><span class="far fa-user-circle"></span>Mi Perfil</a>
                                 <div role="separator" class="dropdown-divider my-0"></div>
                                 <a class="dropdown-item rounded-bottom fw-bold" href="<?= base_url('logout') ?>"><span class="fas fa-sign-out-alt text-danger"></span>Salir</a>
                             </div>
@@ -133,11 +126,10 @@
         </footer>
     </main>
     <!-- Core -->
-    <script src="<?=base_url('js/jquery-3.5.1.min.js')?>" ></script>
+    <script src="<?= base_url('js/jquery-3.5.1.min.js') ?>"></script>
 
     <script src="<?= base_url('bootstrap-5.0.0-beta2-dist/js/bootstrap.bundle.min.js') ?>"></script>
     <!-- Volt JS -->
-    <!-- <script src="<?= base_url('js/volt.js') ?>"></script> -->
 
     <?= $this->renderSection('script') ?>
 </body>

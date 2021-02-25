@@ -24,6 +24,21 @@ class Post extends BaseController
 		$data['vista'] = $this->vista;
 		return view('Dashboard/Post/index', $data);
 	}
+	public function show($slug)
+	{
+		$model = new PostModel;
+		$data['post'] = $model
+			->where('slug', $slug)
+			->first();
+		$model = new CategoriaModel();
+		$data['categorias_post'] = $model->select('categoria.*')
+		->join('categoria_post','categoria.id = categoria_post.categoria_id')
+		->join('post','post.id = categoria_post.post_id')
+		->where('post.slug',$slug)
+		->findAll();
+		$data['categorias'] = $model->findAll();
+		return view('Dashboard/Post/show', $data);
+	}
 
 	public function create()
 	{
