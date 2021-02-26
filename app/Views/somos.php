@@ -10,38 +10,26 @@
 
 <div class="row">
     <div class="col-md-8">
-        <article class="blog-post">
+        <article class="blog-post" style="text-align: justify;">
             <h2 class="blog-post-title">Somos</h2>
             <p class="blog-post-meta"></p>
             <hr>
-            <p style="text-align: justify;">
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+            <p>
+                Somos una agrupación comprometida por el buen desarrollo de la minera Chilena, entablando acciones, conversaciones e informando a los distintos sectores mineros y al público en general.
             </p>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
+            <p>
+                La conformación de Política Minera Chilena es sin duda un aporte significativo a la política Chilena, destacando la oportuna información de destacados proyectos o noticias a fines.
+            </p>
+            <p>
+                El desempeño correcto de nuestro sector minero lo hacemos juntos y por eso les pedimos como comunidad contactarnos a las distintas redes sociales en caso de dudas, sugerencias o aportes.
+            </p>
+            <p>
+                ¡Sus opiniones siempre serán muy bien bienvenidas!
+            </p>
+            <div class="row mt-2">
+                <div class="col-md-6">
                     <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
+                        <img src="<?=base_url('logo.jpg')?>" width="100%" class="card-img-top" alt="...">
                     </div>
                 </div>
             </div>

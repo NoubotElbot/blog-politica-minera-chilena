@@ -38,11 +38,11 @@
                     <input type="email" class="form-control" id="email" name="email" value="<?= $usuario['email'] ?>" required>
                 </div>
                 <div class="col-md-8 mb-3">
-                    <label for="password">Contraseña</label>
+                    <label for="password">Contraseña  (Dejar en blanco si no cambiará)</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="new-password">Confirmar Contraseña</label>
+                    <label for="new-password">Nueva Contraseña</label>
                     <input type="password" class="form-control" id="new-password" name="new-password">
                 </div>
                 <div class="col-md-6 mb-3">
