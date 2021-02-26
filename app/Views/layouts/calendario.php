@@ -16,8 +16,9 @@
             </li>
         </ol>
     </div>
-    <div class="p-4 bg-light rounded">
-    <iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=2&amp;bgcolor=%234285F4&amp;ctz=America%2FSantiago&amp;src=YjJzaHZjdjBucjdsamJvanE0czE1cDA1NWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;showNav=1&amp;showPrint=0&amp;showTz=0&amp;showTitle=1" style="border:solid 1px #777" width="100%" height="300" frameborder="0" scrolling="no"></iframe>    </div>
+    <div class="py-1">
+        <iframe src="https://calendar.google.com/calendar/embed?height=400&amp;wkst=2&amp;bgcolor=%234285F4&amp;ctz=America%2FSantiago&amp;src=YjJzaHZjdjBucjdsamJvanE0czE1cDA1NWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;showNav=1&amp;showPrint=0&amp;showTz=0&amp;showTitle=1" style="border:solid 1px #777" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
+    </div>
     <div class="p-4">
         <div class="infogram-embed" data-id="72884f85-1150-4e86-89ca-7882ea1b64d9" data-type="interactive" data-title="Precio Cobre"></div>
     </div>

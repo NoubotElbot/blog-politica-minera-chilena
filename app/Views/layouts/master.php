@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-4 d-flex justify-content-end">
                     <div class="search-bar">
-                        <form role="search" method="get" id="searchform" action="">
+                        <form role="search" method="get" id="searchform" action="<?= base_url() ?>">
                             <label for="search-input" id="search-input-label">
                                 <i class="fas fa-search"></i>
                             </label>
@@ -70,8 +70,8 @@
 
         <div class="nav-scroller py-1 px-3 mb-2">
             <nav class="nav d-flex justify-content-between">
-                <?php foreach($categorias as $c): ?>
-                <a class="p-2 link-secondary" href="<?= base_url('categoria/'.$c['slug']) ?>"><?=$c['categoria_nombre']?></a>
+                <?php foreach ($categorias as $c) : ?>
+                    <a class="p-2 link-secondary" href="<?= base_url('categoria/' . $c['slug']) ?>"><?= $c['categoria_nombre'] ?></a>
                 <?php endforeach; ?>
                 <a class="p-2 link-secondary" href="<?= base_url('somos') ?>">Somos</a>
             </nav>
@@ -88,7 +88,7 @@
             <a href="https://www.facebook.com/politica.minerachilena"><i class="fab fa-facebook text-primary"></i></a>
             <a href="https://www.linkedin.com/in/politica-minera-chilena-b85996201/"><i class="fab fa-linkedin" style="color:blue;"></i></a>
             <a href="https://twitter.com/ChilenaMinera"><i class="fab fa-twitter text-info"></i></i></a>
-            <a href="https://app.netmin.cl/profile/c/38cf9cad-792b-418b-bdd9-f5b99907a8c2"><img src="<?=base_url('netmin_logo.png')?>" alt="NetMin" width="60px" ></a>
+            <a href="https://app.netmin.cl/profile/c/38cf9cad-792b-418b-bdd9-f5b99907a8c2"><img src="<?= base_url('netmin_logo.png') ?>" alt="NetMin" width="60px"></a>
         </p>
         <p>
             <a href="#">Volver arriba</a>

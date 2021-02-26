@@ -22,8 +22,10 @@ class Categoria extends BaseController
 		$data['posts'] = $model->select('post.*')
 		->join('categoria_post','post.id = categoria_post.post_id')
 		->join('categoria','categoria.id = categoria_post.categoria_id')
+		->orderBy('id','desc')
+		->where('post.activo', 1)
 		->where('categoria.slug',$slug)
-		->paginate(2);
+		->paginate(10);
 		$data['pager'] = $model->pager;
 		$model = new CategoriaModel();
 		$data['vista'] =  $model->select('categoria_nombre')->where('slug',$slug)->first();
