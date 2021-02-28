@@ -25,7 +25,6 @@
       }
     }
   </style>
-  <!-- Custom styles for this template -->
   <link href="<?= base_url('css/signin.css') ?>" rel="stylesheet">
 </head>
 
@@ -42,12 +41,7 @@
     <label for="username" class="visually-hidden">Username</label>
     <input type="text" id="username" name="username" class="form-control" placeholder="Nombre de Usuario" required autofocus>
     <label for="password" class="visually-hidden">Contraseña</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-    <!-- <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div> -->
+    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Enviar</button>
     <?= form_close() ?>
   </main>

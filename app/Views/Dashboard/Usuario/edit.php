@@ -38,7 +38,7 @@
                     <input type="email" class="form-control" id="email" name="email" value="<?= $usuario['email'] ?>" required>
                 </div>
                 <div class="col-md-8 mb-3">
-                    <label for="password">Contraseña  (Dejar en blanco si no cambiará)</label>
+                    <label for="password">Contraseña  (Dejar en blanco si no desea cambiarla)</label>
                     <input type="password" class="form-control" id="password" name="password">
                 </div>
                 <div class="col-md-6 mb-3">

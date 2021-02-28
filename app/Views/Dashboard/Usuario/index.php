@@ -61,7 +61,7 @@
                                     <?= date('d-m-Y H:i:s', strtotime($usuario['update_at'])) ?>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('usuario/' . $usuario['id'] . '/edit') ?>" class="btn btn-sm btn-secondary" title="Editar"><i class="fas fa-pen-square"></i></a>
+                                    <?= session()->get('id') == $usuario['id'] ? '<a href="'. base_url('usuario/' . $usuario['id'] . '/edit').'" class="btn btn-sm btn-secondary" title="Editar"><i class="fas fa-pen-square"></i></a>':'' ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

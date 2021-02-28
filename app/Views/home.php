@@ -43,6 +43,7 @@
     <style>
       .bg-img {
         position: relative;
+        height: 50vh;
         width: 100%;
         display: flex;
         background-image: url(<?= base_url($lastPost['imagen']) ?>);
@@ -56,7 +57,7 @@
         right: 0px;
         bottom: 0px;
         left: 0px;
-        background-color: rgba(0, 0, 0, 0.40);
+        background-color: rgba(0, 0, 0, 0.45);
       }
 
       .texto-position {
@@ -77,7 +78,7 @@
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <h3 class="mb-0"><?= $p['titulo'] ?></h3>
+            <h3 class="mb-0"><?= strlen($p['titulo']) > 55 ?  substr($p['titulo'], 0, 55).'...' : $p['titulo']  ?></h3>
             <div class="mb-1 text-muted"><?= date('d F Y', strtotime($p['create_at'])) ?></div>
             <a href="<?= base_url('post/' . $p['slug']) ?>" class="stretched-link">Continuar leyendo</a>
           </div>
@@ -106,6 +107,8 @@
             </div>
           </article><!-- /.blog-post -->
         <?php endforeach; ?>
+      <?php else : ?>
+        <h4>Aun no sean realizado mas post</h4>
       <?php endif; ?>
     </div>
     <?= $this->include('layouts/calendario') ?>

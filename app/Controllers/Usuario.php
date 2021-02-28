@@ -12,7 +12,6 @@ class Usuario extends BaseController
 	{
 		$model = new UsuarioModel;
 		$data['usuarios'] = $model
-			->orderBy('id', 'desc')
 			->paginate(10);
 		$data['pager'] = $model->pager;
 		$data['vista'] = $this->vista;
@@ -20,7 +19,7 @@ class Usuario extends BaseController
 	}
 	// public function show($slug)
 	// {
-		
+
 	// }
 
 	// public function create()
@@ -57,30 +56,45 @@ class Usuario extends BaseController
 					'valid_email' => 'Debe ingresar un email valido'
 				],
 			];
-            if($this->request->getPost('password')){
-                $rules['password'] = 'validateUser[username,password]';
-                $rules['new-password'] = 'required|min_length[8]';
-                $rules['password-confirm'] = 'required|matches[new-password]';
-            }
+			if ($this->request->getPost('password')) {
+				$rules['password'] = 'validateUser[username,password]';
+				$rules['new-password'] = 'required|min_length[8]';
+				$rules['password-confirm'] = 'required|matches[new-password]';
+				$menssages['password'] = [
+					'validateUser' => 'La contraseña no es correcta'
+				];
+				$menssages['new-password'] = [
+					'required' => 'Debe ingresar la nueva contraseña',
+					'min_length' => 'Su contraseña debe tener minimo 8 caracteres'
+				];
+				$menssages['password-confirm'] = [
+					'required' => 'Debe confirmar su contraseña',
+					'matches' => 'La contraseña no coincide'
+				];
+			}
 			if (!$this->validate($rules, $menssages)) {
 				$data['validation'] = $this->validator;
 			} else {
 				$datos = [
 					'email' => $this->request->getPost('email'),
 				];
-                if($this->request->getPost('password')){
-                    $datos['password'] = $this->request->getPost('new-password');
-                }
+				if ($this->request->getPost('password')) {
+					$datos['password'] = $this->request->getPost('new-password');
+				}
 				$model = new UsuarioModel;
 				$model->update($id, $datos);
 				session()->setFlashdata('success', "Registro #$id modificado exitosamente");
 				return redirect('usuario');
 			}
 		}
-		$data['vista'] = $this->vista;
-		$model = new UsuarioModel;
-		$data['usuario'] = $model->find($id);
-		return view('Dashboard/Usuario/edit', $data);
+		if (session()->get('id') == $id) {
+			$data['vista'] = $this->vista;
+			$model = new UsuarioModel;
+			$data['usuario'] = $model->find($id);
+			return view('Dashboard/Usuario/edit', $data);
+		}else{
+			return redirect()->back();
+		}
 	}
 
 	// public function delete($id)
